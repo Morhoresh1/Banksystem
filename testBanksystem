@@ -1,0 +1,116 @@
+import org.junit.Assert;
+import org.junit.Test;
+
+public class TestBanksystem {
+
+    @Test
+    public void depositePTest() throws InterruptedException {
+        String url= "https://www.globalsqa.com/angularJs-protractor/BankingProject/#/";//url selector
+        MainBank selenium= new MainBank();
+        selenium.driver.get ( url );//open website
+        String customerLogin= "body > div > div > div.ng-scope > div > div.borderM.box.padT20 > div:nth-child(1) > button";
+        //customer login selector
+        Thread.sleep(1000);
+        selenium.getElement(customerLogin).click();//open window customer login
+        String userSelect= "#userSelect";//userSelect selector
+        Thread.sleep(1000);
+        selenium.getElement(userSelect).click();//click window userSelect
+        String userName= "#userSelect > option:nth-child(3)";//user name selector - select user
+        Thread.sleep(1000);
+        selenium.getElement(userName).click();//click one user name
+        String loginbutton= "body > div > div > div.ng-scope > div > form > button";//login button selector
+        Thread.sleep(1000);
+        selenium.getElement(loginbutton).click();//click window login button
+        String deposit= "body > div > div > div.ng-scope > div > div:nth-child(5) > button:nth-child(2)";
+        //deposit selector
+        Thread.sleep(1000);
+        selenium.getElement(deposit).click();//click window deposit
+        String amountSelector= "body > div > div > div.ng-scope > div > div.container-fluid.mainBox.ng-scope > div > form > div > input";
+        //amountSelector selector
+        Thread.sleep(1000);
+        String amount= "250";//insert amount
+        selenium.getElement(amountSelector).sendKeys(amount);//insert amount to be deposited
+        String depositbutton= "body > div > div > div.ng-scope > div > div.container-fluid.mainBox.ng-scope > div > form > button";
+        //depositbutton selector
+        Thread.sleep(1000);
+        selenium.getElement(depositbutton).click();//click window depositbutton
+        String expected= "Deposit Successful";//the expected results
+        String actualValue =selenium.getElement(
+                "body > div > div > div.ng-scope > div > div.container-fluid.mainBox.ng-scope > div > span").getText();
+        Assert.assertEquals(expected,actualValue);//check if the result equals to the expected
+        String expected2= "250";//the expected amount
+        String actualValue2 =selenium.getElement(
+                "body > div > div > div.ng-scope > div > div:nth-child(3) > strong:nth-child(2)").getText();
+        Assert.assertEquals(expected2,actualValue2);//check if the amount result equals to the expected
+        selenium.driver.quit();//close website
+
+
+
+
+
+
+
+    }
+    @Test
+    public void withdrawlPTest() throws InterruptedException{
+        String url= "https://www.globalsqa.com/angularJs-protractor/BankingProject/#/";//url selector
+        MainBank selenium= new MainBank();
+        selenium.driver.get ( url );//open website
+        String customerLogin= "body > div > div > div.ng-scope > div > div.borderM.box.padT20 > div:nth-child(1) > button";
+        //customer login selector
+        Thread.sleep(1000);
+        selenium.getElement(customerLogin).click();//open window customer login
+        String userSelect= "#userSelect";//userSelect selector
+        Thread.sleep(1000);
+        selenium.getElement(userSelect).click();//click window userSelect
+        String userName= "#userSelect > option:nth-child(4)";//user name selector - select user
+        Thread.sleep(1000);
+        selenium.getElement(userName).click();//click one user name
+        String loginbutton= "body > div > div > div.ng-scope > div > form > button";//login button selector
+        Thread.sleep(1000);
+        selenium.getElement(loginbutton).click();//click window login button
+        String deposit= "body > div > div > div.ng-scope > div > div:nth-child(5) > button:nth-child(2)";
+        //deposit selector
+        Thread.sleep(1000);
+        selenium.getElement(deposit).click();//click window deposit
+        String amountSelector= "body > div > div > div.ng-scope > div > div.container-fluid.mainBox.ng-scope > div > form > div > input";
+        //amountSelector selector
+        Thread.sleep(1000);
+        String amount= "2000";//insert amount
+        selenium.getElement(amountSelector).sendKeys(amount);//insert amount to be deposited
+        String depositbutton= "body > div > div > div.ng-scope > div > div.container-fluid.mainBox.ng-scope > div > form > button";
+        //depositbutton selector
+        Thread.sleep(1000);
+        selenium.getElement(depositbutton).click();//click window depositbutton
+        String withdrawl= "body > div > div > div.ng-scope > div > div:nth-child(5) > button:nth-child(3)";
+        //withdrawl selector
+        Thread.sleep(1000);
+        selenium.getElement(withdrawl).click();//click window withdrawl
+        String amountSelector2= "body > div > div > div.ng-scope > div > div.container-fluid.mainBox.ng-scope > div > form > div > input";
+        //amountSelector2 selector
+        String amount2= "1500";//insert amount
+        Thread.sleep(1000);
+        selenium.getElement(amountSelector2).sendKeys(amount2);//insert amount to be Withdrawn
+        String withdrawlbutton= "body > div > div > div.ng-scope > div > div.container-fluid.mainBox.ng-scope > div > form > button";
+        //withdrawlbutton selector
+        Thread.sleep(1000);
+        selenium.getElement(withdrawlbutton).click();//click window withdrawlbutton
+        String expected= "Transaction successful";//the expected results
+        String actualValue =selenium.getElement(
+                "body > div > div > div.ng-scope > div > div.container-fluid.mainBox.ng-scope > div > span").getText();
+        Assert.assertEquals(expected,actualValue);//check if the result equals to the expected
+        String transactions= "body > div > div > div.ng-scope > div > div:nth-child(5) > button:nth-child(1)";
+        //transactions selector
+        Thread.sleep(1000);
+        selenium.getElement(transactions).click();//click window transactions
+        String datebutton= "#start";//datebutton selector
+        Thread.sleep(1000);
+        selenium.getElement(datebutton).click();//click window datebutton
+        String expected2= "1500";//the expected amount
+        String actualValue2 =selenium.getElement(
+                "#anchor1 > td:nth-child(2)").getText();
+        Assert.assertEquals(expected2,actualValue2);//check if the amount result equals to the expected
+        selenium.driver.quit();//close website
+    }
+
+}
